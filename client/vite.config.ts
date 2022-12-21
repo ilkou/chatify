@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [svelte()],
   server: {
     proxy: {
-      '/api': 'https://pocket-base-instance.ilkou',
+      '/api': 'https://learn-pb-prod-pocket-di0czo.mo6.mogenius.io',
     },
   },
 })
