@@ -1,6 +1,7 @@
 <script lang="ts">
   import { currentUser, pb } from "./pocketbase";
   import Messages from "./Messages.svelte";
+  import { getUsernameStyles } from "./utils.js";
 
   let username: string;
   let password: string;
@@ -27,7 +28,11 @@
 </script>
 
 {#if $currentUser}
-  <p>Logged in as {$currentUser.username}</p>
+  <p>
+    Logged in as <span style={getUsernameStyles($currentUser.id)}
+      >{$currentUser.username}</span
+    >
+  </p>
   <button on:click={logout}>Logout</button>
   <Messages />
 {:else}

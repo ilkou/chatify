@@ -1,17 +1,28 @@
 <script lang="ts">
-  import { onMount, onDestroy } from "svelte";
+  import { onMount, onDestroy, beforeUpdate, afterUpdate } from "svelte";
   import { currentUser, pb } from "./pocketbase";
+  import { getUsernameStyles } from "./utils.js";
 
   let newMessage: string;
   let unsubscribe: () => void;
   let messages = [];
+  let div;
+  let autoscroll;
+
+  beforeUpdate(() => {
+    autoscroll =
+      div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20;
+  });
+
+  afterUpdate(() => {
+    if (autoscroll) div.scrollTo(0, div.scrollHeight);
+  });
 
   onMount(async () => {
-    const resultList = await pb.collection("messages").getList(1, 10, {
+    messages = await pb.collection("messages").getFullList(50, {
       sort: "created",
       expand: "user",
     });
-    messages = resultList.items;
 
     unsubscribe = await pb
       .collection("messages")
@@ -31,7 +42,7 @@
   });
 
   async function createMessage() {
-    const createdMessage = await pb.collection("messages").create({
+    await pb.collection("messages").create({
       text: newMessage,
       user: $currentUser.id,
     });
@@ -40,10 +51,13 @@
 </script>
 
 <br />
-<div>
-  {#each messages as message (message.id)}
+
+<div class="chat-container" bind:this={div}>
+  {#each messages as message, i (message.id)}
     <div>
-      <div>{message.expand?.user?.username}: {message.text}</div>
+      <span style={getUsernameStyles(message.expand?.user?.id)}>
+        {message.expand?.user?.username}:
+      </span>{message.text}
     </div>
   {/each}
 </div>

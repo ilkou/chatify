@@ -48,8 +48,7 @@ h1 {
   text-align: center;
 }
 
-button {
-  border-radius: 8px;
+button, input {
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -59,12 +58,42 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+button:hover,
+input:hover {
   border-color: #646cff;
 }
 button:focus,
-button:focus-visible {
+button:focus-visible,
+input:focus,
+input:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.chat-container {
+  height: 400px;
+  max-height: 80vh;
+  width: 280px;
+  max-width: 95vw;
+  overflow-y: auto;
+  word-break: break-word;
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 @media (prefers-color-scheme: light) {
