@@ -5,9 +5,9 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 export default defineConfig({
   plugins: [svelte()],
   base: "/chatify/",
-  server: {
-    proxy: {
-      "/api": "https://learn-pb-prod-pocket-di0czo.mo6.mogenius.io",
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": "https://learn-pb-prod-pocket-di0czo.mo6.mogenius.io",
+  //   },
+  // },
 });
