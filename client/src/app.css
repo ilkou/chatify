@@ -80,19 +80,24 @@ input:focus-visible {
   padding: 10px;
   margin: 10px;
 }
-::-webkit-scrollbar {
+.chat-container::-webkit-scrollbar {
   width: 10px;
 }
-
-::-webkit-scrollbar-track {
+.chat-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-container:hover::-webkit-scrollbar-track {
   background: #1a1a1a;
 }
 
-::-webkit-scrollbar-thumb {
+.chat-container::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.chat-container:hover::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.chat-container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
