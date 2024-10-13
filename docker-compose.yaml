@@ -1,0 +1,7 @@
+services:
+  learn-pb:
+    image: 'ilkou/learn-pb'
+    volumes:
+      - "./backup:/pb/pb_data"
+    ports:
+      - '8088:8080'
